@@ -18,21 +18,18 @@ const CardPanel = () => {
   const [minimized, setMinimized] = useState(false);
 
   useEffect(() => {
-    if (minimized) {
-      ELEMENTS.forEach((element, index) => {
-        setTimeout(() => {
-          document
-            .querySelector(`.card-${element.name}`)
-            .classList.add("moving-down");
-        }, index * 100);
-      });
-    } else {
-      ELEMENTS.forEach((element) => {
-        document
-          .querySelector(`.card-${element.name}`)
-          .classList.remove("moving-down");
-      });
-    }
+    ELEMENTS.forEach((element, index) => {
+      const card = document.querySelector(`.card-${element.name}`);
+      if (card) {
+        if (minimized) {
+          setTimeout(() => {
+            card.classList.add("moving-down");
+          }, index * 100);
+        } else {
+          card.classList.remove("moving-down");
+        }
+      }
+    });
   }, [minimized]);
 
   const handleClick = () => {
@@ -40,20 +37,18 @@ const CardPanel = () => {
   };
 
   const returnElement = (isSmall) => {
-    return ELEMENTS.map((element) => {
-      return (
-        <div
-          className={
-            isSmall
-              ? "small-elements__card"
-              : `large-elements__card card-${element.name}`
-          }
-          key={element.name}
-        >
-          {element.name}
-        </div>
-      );
-    });
+    return ELEMENTS.map((element) => (
+      <div
+        className={`${
+          isSmall
+            ? "small-elements__card"
+            : `large-elements__card card-${element.name}`
+        }`}
+        key={element.name}
+      >
+        {element.name}
+      </div>
+    ));
   };
 
   return (

@@ -1,4 +1,3 @@
-/* Base styles for the card panel and elements */
 .card-panel {
   width: 100%;
   height: 100%;
@@ -25,7 +24,6 @@
   transition: all 0.5s ease;
 }
 
-/* Keyframes for the moving-down animation */
 @keyframes movingDown {
   0% {
     transform: translateY(0);
@@ -43,12 +41,10 @@
   }
 }
 
-/* Apply the animation when minimized */
 .large-elements__card.moving-down {
   animation: movingDown 2s forwards;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .large-elements__card {
     width: 140px;
